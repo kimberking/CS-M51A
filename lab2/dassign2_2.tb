@@ -1,0 +1,61 @@
+//--------------------------------------------------------------------
+//		Timescale
+//		Means that if you do #1 in the initial block of your
+//		testbench, time is advanced by 1ns instead of 1ps
+//--------------------------------------------------------------------
+`timescale 1ns / 1ps
+
+`include "constants2_2.vh"
+
+//--------------------------------------------------------------------
+//		Design Assign #2, Problem #2 Testbench.
+//--------------------------------------------------------------------
+module dassign2_2_tb();
+
+//----------------------------------------------------------------
+//		Signal Declarations
+//----------------------------------------------------------------
+
+wire clk;
+
+reg         in = 0;
+integer     i;
+
+wire[7:0] width;
+wire short, type, ready;
+
+//----------------------------------------------------------------
+//		Instantiate modules
+//----------------------------------------------------------------
+clock_gen  #(25)  clock_gen(clk);
+pulse_width #(8)  pulse_width(clk, in, width, short, type, ready);
+
+//----------------------------------------------------------------
+//		Test Stimulus
+//----------------------------------------------------------------
+initial begin
+    $dumpfile("timing2_2.vcd");
+    $dumpvars;
+
+    for(i=8'b0; i<127; i=i+1) begin
+        @(posedge clk);             // Wait until the rising edge of the clock
+        #1                          // Wait one more tick
+        in = $urandom;              // Set the input to a random bit
+    end
+
+    $finish;
+end
+endmodule
+
+
+// Clock generation.  Period set via parameter:
+//   clock changes every half_period ticks
+//   full clock period = 2*half_period
+module clock_gen(clk);
+    parameter half_period = 25;
+    output clk;
+    reg    clk;
+
+    initial clk = 1;
+    always #half_period clk = ~clk;
+endmodule

@@ -1,0 +1,33 @@
+Notes:
+
+I have provided my lab1 and lab2 designs in the lab_modules.v file.  You can
+feel free to use those, or replace them with your own, surely better, modules.
+Make sure the file includes the adder, maxindex, display driver, multiplier, and
+deserializer blocks.
+
+3.1(b) Note that in order to chain 4-bit ripple-carry adders into a 16-bit
+  adder, we'll need to pass in and out the relevant carry bits.  That wasn't
+  required in lab 1; I've provided my version in the lab_modules.v file.
+
+3.1(c) Note that in lab 2, we used unsigned integers.  In our neuron, we are
+  multiplying an unsigned input with a signed weight, which may require some
+  modification of your multiplier.  Again, my version in lab_modules.v includes
+  this.
+
+  Also note that the neuron bias b is a constant value, and so you don't need to
+  worry about proper pipelining of that signal. 
+
+3.2(b) This may or may not require any design on your part: if your pipeline
+  already has the requisite throughput, you wouldn't need to change anything.
+
+3.3(a) For the sake of debugging (as seen in the test-bench), I've added another
+  output to the decoder module: the 5 bit letter index as output by the maxindex
+  block.
+
+EE89 lab:
+  The weights are calibrated so that one Morse time unit is 4 clock cycles:
+    dit = 4 clock cycles high
+    dah = 12 clock cycles high
+    space between pulses = 4 clock cycles low
+    space between letters = 12 clock cycles low
+
