@@ -1,16 +1,3 @@
-// EEM16 - Logic Design
-// Design Assignment #1 - Problem #1.1
-// dassign1_1.v
-// Verilog template
-
-// You may define any additional modules as necessary
-// Do not delete or modify any of the modules provided
-//
-// The modules you will have to design are at the end of the file
-// Do not change the module or port names of these stubs
-
-// CMOS gates (declarative Verilog)
-// Includes propagation delay t_PD = 1
 module inverter(a,y);
     input a;
     output y;
