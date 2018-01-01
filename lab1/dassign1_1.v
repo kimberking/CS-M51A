@@ -19,7 +19,6 @@ module fa_gate_2(a,b,c,m,y);
     assign #1 y = ~((a&b&c) | ((a|b|c)&m));
 endmodule
 
-// Full adder (structural Verilog)
 module fa(a,b,ci,co,s);
     input a,b,ci;
     output s,co;
@@ -32,8 +31,6 @@ module fa(a,b,ci,co,s);
     inverter    inverter_2(ns, s);
 endmodule
 
-// 5+2 input full adder (structural Verilog)
-// IMPORTANT: Do not change module or port names
 module fa5 (a,b,c,d,e,ci0,ci1, 
             co1,co0,s);
 
@@ -51,7 +48,6 @@ module fa5 (a,b,c,d,e,ci0,ci1,
 	fa SUM(fa2SToSUM, ci0, ci1, SUMC0ToCOUT, s);
 	fa COUT(SUMC0ToCOUT, fa2C0ToCOUT, fa1C0ToCOUT, co1, co0);
 endmodule
-
 
 module adder5 (a,b,c,d,e,sum);
     input [3:0] a,b,c,d,e;
